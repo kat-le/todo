@@ -6,6 +6,12 @@
     <title>Todo</title>
 </head>
 <body>
+    <dialog id="edit-project-dialog"></dialog>
+    <dialog id="add-project-dialog"></dialog>
+    <dialog id="add-todo-dialog"></dialog>
+    <dialog id="edit-todo-dialog"></dialog>
+
+
     <div class="big-container">
         <div class="header"></div>
         <div class="sidebar">
@@ -18,7 +24,7 @@
                     <div class="project-list-container hidden"></div>
                 </div>
                 <div class="project-description">
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p class="active-description"></p>
                 </div>
                 <button class="edit-project-btn">Edit project</button>
                 <button class="delete-project-btn">Delete project</button>
@@ -32,37 +38,37 @@
         <div class="todo-content">
             <div class="left-content">
                 <div class="greetings">
-                    <p>Good morning</p>
+                    <p class="greeting"></p>
                 </div>
-                <div class="todos-container">
+                <div class="todo-grid-card">
+                    <div class="todo-card-title">Todo List</div>
+                    <div class="add-todo-container">
+                        <button class="add-todo-btn">Add a todo</button>
+                    </div>
+                    <div class="todos-container">
+                    </div>
+                </div>
 
-                </div>
             </div>
             <div class="right-content">
-                <div class="time">Time</div>
-                <div class="calender">Calender</div>
-                <div class="percent-completed">Percent Completed</div>
+                <div class="time">
+                    <div class="clock"></div>
+                    <div>Time</div>
+                </div>
+                <div class="calender-card">
+                    <div class="calendar"></div>
+                </div>
+                <div class="percent-completed">
+                    <div class="day"></div>
+                    <div class="bar-container">
+                         <div class="bar">
+                            <div class="bar-fill"></div>
+                        </div>
+                    </div>
+                    <div class="percent"></div>
+                </div>
             </div>
-
-
         </div>
     </div>
-  
-
-
-    <div class="app-container">
-        <div id="form-container"></div>
-        <dialog id="todo-dialog"></dialog>
-        <dialog id="edit-dialog"></dialog>
-
-        <p>PROJECTS</p>
-            <div class="container">
-            </div>
-
-    </div>
-   
-
-
-    
 </body>
 </html>

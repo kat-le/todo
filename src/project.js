@@ -24,5 +24,13 @@ export default class Project {
         if (title !== undefined) this.title = title;
         if (desc !== undefined) this.desc = desc;
     }
+
+    getCompletionPercentage() {
+        if (this.todos.length === 0) return 0;
+
+        const completed = this.todos.filter(todo => todo.completed).length
+
+        return Math.round((completed / this.todos.length) * 100)
+    }
 }
 

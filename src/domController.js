@@ -1,5 +1,4 @@
-import { format} from "date-fns";
-import createProjects from "./domProject";
+import { format } from "date-fns";
 import createTodo from "./domTodo";
 
 const domController = (() => {
@@ -8,54 +7,45 @@ const domController = (() => {
     element.innerHTML = "";
   }
 
-  function renderProjects(projects) {
-    const container = document.querySelector(".container");
-    clear(container);
-
-    projects.forEach(project => {
-       const { 
-        projectCard,
-        left,
-        right,
-        button,
-        projectDesc,
-        deleteBtn,
-        addTodoBtn,
-        todos } = createProjects(project);
-        
-        project.todos.forEach(todo => {
-          const card = createTodo(todo, project)
-          todos.appendChild(card)
-        })
-
-        left.appendChild(button);
-        left.appendChild(projectDesc)
-        left.appendChild(deleteBtn)
-        right.appendChild(addTodoBtn)
-        right.appendChild(todos)
-
-        projectCard.appendChild(left)
-        projectCard.appendChild(right)
-        container.appendChild(projectCard)
-    });
+  function renderActiveProject(project) {
+      const title = document.querySelector(".active-project-title");
+      if (!project) return;
+      title.textContent = project.title;
+      const desc = document.querySelector(".active-description")
+      desc.textContent = project.desc
   }
 
-  function renderProjectForm() {
-    const container = document.querySelector("#form-container");
+  function renderProjectTodos(project) {
+    const todoContainer = document.querySelector(".todos-container")
+    clear(todoContainer)
+     
+    project.todos.forEach(todo => {
+      const card = createTodo(todo, project)
+      todoContainer.appendChild(card)
+    })
+  }
 
-    container.innerHTML = `
-        <form id="project-form">
+ function renderAddProjectForm() {
+    const dialog = document.querySelector("#add-project-dialog");
+
+     dialog.innerHTML = `
+      <form id="project-form">
         <input name="title" placeholder="Project name" required>
         <input name="desc" placeholder="Project Description">
-
         <button type="submit">Add Project</button>
-        </form>`
-
+        <button type="button" id="cancel-btn">Cancel</button>
+      </form>`
     ;
+
+    dialog.showModal();
+
+    dialog.querySelector("#cancel-btn").addEventListener("click", () => {
+    dialog.close();
+  });
 }
 
 function renderTodoForm(projectId) {
-  const dialog = document.querySelector("#todo-dialog");
+  const dialog = document.querySelector("#add-todo-dialog");
 
   dialog.innerHTML = `
     <form id="todo-form" data-project-id="${projectId}">
@@ -87,9 +77,9 @@ function renderTodoForm(projectId) {
 }
 
 function renderEditTodoForm(project, todo) {
-  const dialog = document.querySelector("#edit-dialog");
+  const dialog = document.querySelector("#edit-todo-dialog");
 
-  dialog.innerHTML = `
+ dialog.innerHTML = `
     <form id="edit-form" data-project-id="${project.id}" data-todo-id="${todo.id}">
       <input name="title" value="${todo.title}">
 
@@ -116,7 +106,7 @@ function renderEditTodoForm(project, todo) {
       <button type="submit">Save</button>
       <button type="button" id="cancel-btn">Cancel</button>
     </form>
-  `;
+  `; 
 
   dialog.showModal();
 
@@ -153,20 +143,50 @@ function closeProjectList() {
     container.classList.add("hidden");
 }
 
-function renderActiveProject(project) {
-    const title = document.querySelector(".active-project-title");
-    title.textContent = project.title;
+function renderEditProjectForm(project) {
+  const dialog = document.querySelector("#edit-project-dialog");
+
+  dialog.innerHTML = `
+    <form id="edit-project-form" data-id="${project.id}"">
+      <input name="title" value="${project.title}">
+
+      <textarea
+        name="desc">
+        ${project.desc} 
+      </textarea>
+      <button type="submit">Save</button>
+      <button type="button" id="cancel-btn">Cancel</button>
+    </form>
+  `;
+
+  dialog.showModal();
+
+  dialog.querySelector("#cancel-btn").addEventListener("click", () => {
+    dialog.close();
+  });
+}
+
+function renderPercentCompleted(project) {
+    const percentage = document.querySelector(".percent")
+    clear(percentage)
+    const percent = project.getCompletionPercentage()
+    percentage.textContent = `${percent}% completed`
+
+    const fill = document.querySelector(".bar-fill");
+    fill.style.width = `${percent}%`;
 }
 
 
   return {
-    renderProjects,
-    renderProjectForm,
     renderTodoForm,
     renderEditTodoForm,
     toggleProjectNames,
     renderActiveProject,
-    closeProjectList
+    closeProjectList,
+    renderEditProjectForm,
+    renderAddProjectForm,
+    renderProjectTodos,
+    renderPercentCompleted
   };
 
 })();

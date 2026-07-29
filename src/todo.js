@@ -24,6 +24,4 @@ export default class Todo {
         if (date !== undefined) this.date = parseISO(date);;
         if (priority !== undefined) this.priority = priority;
     }
-
-
 }
