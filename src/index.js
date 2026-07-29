@@ -3,33 +3,37 @@ import Project from "./project.js"
 import Todo from "./todo.js"
 import ProjectManager from "./projectManager.js";
 import domController from "./domController.js";
-import { loadProjects, saveProjects, storageAvailable } from "./storage.js";
+import { saveActiveProject, loadActiveProject, loadProjects, saveProjects } from "./storage.js";
 
 const manager = new ProjectManager();
-manager.projects = loadProjects();
 
-refresh();
+const savedProjects = loadProjects();
+
+if (savedProjects.length === 0) {
+    createSeedData();
+} else {
+    manager.projects = savedProjects;
+
+    const activeId = loadActiveProject();
+
+    if (activeId) {
+        manager.setActiveProject(activeId);
+    } else {
+        manager.activeProject = manager.projects[0];
+    }
+    refresh();
+}
+
+domController.renderActiveProject(manager.activeProject);
 
 function createSeedData() {
-    const seedProject = new Project(
-    "Odin Project",
-    "Build the Todo List app"
-    );
-
-    const seedTodo = new Todo(
-        "Create project cards",
-        "Render projects and todos on the page",
-        "2026-08-01",
-        "High"
-    );
-    seedProject.addTodo(seedTodo);
+    const seedProject = new Project("Untitled");
     manager.addProject(seedProject);
     saveProjects(manager.projects)
     refresh()
 }
 
 domController.renderProjectForm();
-//createSeedData()
 
 //handle submits 
 document.addEventListener("submit", (event) => {
@@ -44,6 +48,7 @@ document.addEventListener("submit", (event) => {
         );
 
         manager.addProject(project);
+        manager.setActiveProject(project.id);
         saveProjects(manager.projects)
         refresh()
     }
@@ -126,11 +131,24 @@ document.addEventListener("click", (event) => {
         saveProjects(manager.projects)
         refresh()
     }
+
+    if (event.target.classList.contains("show-projects")) {
+        domController.toggleProjectNames(manager.projects, manager.activeProject);
+    }
+
+    if (event.target.classList.contains("project-list-btn")) {
+        const projectId = event.target.dataset.id
+        manager.setActiveProject(projectId)
+        saveActiveProject(projectId)
+        domController.closeProjectList();
+        refresh()
+    }
 });
 
 
 function refresh() {
     domController.renderProjects(manager.projects);
+    domController.renderActiveProject(manager.activeProject);
 }
 
 

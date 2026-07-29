@@ -6,14 +6,61 @@
     <title>Todo</title>
 </head>
 <body>
-    <div id="form-container"></div>
-    <dialog id="todo-dialog"></dialog>
-    <dialog id="edit-dialog"></dialog>
+    <div class="big-container">
+        <div class="header"></div>
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <div class="project-names">
+                    <div class="project-name-container">
+                        <button class="show-projects">^</button>
+                        <p class="active-project-title"></p>
+                    </div>
+                    <div class="project-list-container hidden"></div>
+                </div>
+                <div class="project-description">
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <button class="edit-project-btn">Edit project</button>
+                <button class="delete-project-btn">Delete project</button>
+            </div>
 
-    <p>PROJECTS</p>
-  
-    <div class="container">
+            <div class="sidebar-bottom">
+                <button class="add-project-btn">Add a new project</button>
+            </div>
+           
+        </div>
+        <div class="todo-content">
+            <div class="left-content">
+                <div class="greetings">
+                    <p>Good morning</p>
+                </div>
+                <div class="todos-container">
+
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="time">Time</div>
+                <div class="calender">Calender</div>
+                <div class="percent-completed">Percent Completed</div>
+            </div>
+
+
+        </div>
     </div>
+  
+
+
+    <div class="app-container">
+        <div id="form-container"></div>
+        <dialog id="todo-dialog"></dialog>
+        <dialog id="edit-dialog"></dialog>
+
+        <p>PROJECTS</p>
+            <div class="container">
+            </div>
+
+    </div>
+   
 
 
     

@@ -1,59 +1,31 @@
 import { format} from "date-fns";
+import createProjects from "./domProject";
+import createTodo from "./domTodo";
 
 const domController = (() => {
 
+  function clear(element) {
+    element.innerHTML = "";
+  }
+
   function renderProjects(projects) {
     const container = document.querySelector(".container");
-
     clear(container);
 
     projects.forEach(project => {
-        const projectCard = document.createElement("div")
-        projectCard.classList.add("project");
-        const left = document.createElement("div")
-        left.className = "left-side"
-        const right = document.createElement("div")
-        right.className = "right-side"
-
-        const button = document.createElement("button");
-        button.textContent = project.title;
-        button.dataset.id = project.id;
-        const projectDesc = document.createElement("p")
-        projectDesc.textContent = project.desc
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.dataset.id = project.id
-        deleteBtn.classList = "delete-proj"
-        deleteBtn.textContent = "Delete Project"
-
-        const addTodoBtn = document.createElement("button")
-        addTodoBtn.dataset.projectId = project.id;
-        addTodoBtn.textContent = "Add Todo"
-        addTodoBtn.classList.add("add-todo");
-
-        const todos = document.createElement("div")
-        todos.classList.add("todos");
+       const { 
+        projectCard,
+        left,
+        right,
+        button,
+        projectDesc,
+        deleteBtn,
+        addTodoBtn,
+        todos } = createProjects(project);
         
         project.todos.forEach(todo => {
-            const card = document.createElement("div")
-            card.classList.add("todo-card");
-
-            card.innerHTML = `
-                <h3>${todo.title}</h3>
-                <p>${todo.desc}</p>
-                <p>${todo.formatDate()}<p>
-                <p>${todo.priority}</p>
-                <button class="complete" data-id="${todo.id}" data-project-id="${project.id}">
-                    ${todo.completed ? "Mark Undone" : "Mark Done"}
-                </button>
-                 <button class="edit-todo" data-id="${todo.id}" data-project-id="${project.id}">
-                    Edit
-                </button>
-                <button class="delete-todo" data-id="${todo.id}" data-project-id="${project.id}">
-                    Delete
-                </button>
-            `;
-            todos.appendChild(card)
+          const card = createTodo(todo, project)
+          todos.appendChild(card)
         })
 
         left.appendChild(button);
@@ -66,11 +38,6 @@ const domController = (() => {
         projectCard.appendChild(right)
         container.appendChild(projectCard)
     });
-  }
-
-
-  function clear(element) {
-    element.innerHTML = "";
   }
 
   function renderProjectForm() {
@@ -158,11 +125,48 @@ function renderEditTodoForm(project, todo) {
   });
 }
 
+function toggleProjectNames(projects, activeProject) {
+    const projectListContainer = document.querySelector(".project-list-container");
+    projectListContainer.innerHTML = "";
+    projectListContainer.classList.toggle("hidden");
+
+    const projectList = document.createElement("div")
+    projectList.className = "project-list"
+
+    projects.forEach((project) => {
+      if (activeProject != null && activeProject.id != project.id) {
+        const div = document.createElement("div")
+        div.className = "project-list-item"
+        const projectBtn = document.createElement("button")
+        projectBtn.textContent = project.title
+        projectBtn.className = "project-list-btn"
+        projectBtn.dataset.id = project.id
+        div.appendChild(projectBtn)
+        projectList.appendChild(div)
+      }
+    })
+    projectListContainer.appendChild(projectList)
+}
+
+function closeProjectList() {
+    const container = document.querySelector(".project-list-container");
+    container.classList.add("hidden");
+}
+
+function renderActiveProject(project) {
+    const title = document.querySelector(".active-project-title");
+    title.textContent = project.title;
+}
+
+
   return {
     renderProjects,
     renderProjectForm,
     renderTodoForm,
-    renderEditTodoForm
+    renderEditTodoForm,
+    toggleProjectNames,
+    renderActiveProject,
+    closeProjectList
   };
 
 })();

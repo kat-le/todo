@@ -19,6 +19,14 @@ export function storageAvailable(type) {
   }
 }
 
+export function saveActiveProject(projectId) {
+    localStorage.setItem("activeProject", projectId);
+}
+
+export function loadActiveProject() {
+    return localStorage.getItem("activeProject");
+}
+
 export function saveProjects(projects) {
     localStorage.setItem("projects", JSON.stringify(projects));
 }
