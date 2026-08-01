@@ -20,44 +20,40 @@ export function storageAvailable(type) {
 }
 
 export function saveActiveProject(projectId) {
-    localStorage.setItem("activeProject", projectId);
+  localStorage.setItem("activeProject", projectId);
 }
 
 export function loadActiveProject() {
-    return localStorage.getItem("activeProject");
+  return localStorage.getItem("activeProject");
 }
 
 export function saveProjects(projects) {
-    localStorage.setItem("projects", JSON.stringify(projects));
+  localStorage.setItem("projects", JSON.stringify(projects));
 }
 
 export function loadProjects() {
-    const data = localStorage.getItem("projects")
+  const data = localStorage.getItem("projects");
 
-    if (!data) return [];
+  if (!data) return [];
 
-    const parsedProjects = JSON.parse(data);
+  const parsedProjects = JSON.parse(data);
 
-    return parsedProjects.map(projectData => {
-        const project = new Project(
-            projectData.title,
-            projectData.desc
-        )
+  return parsedProjects.map((projectData) => {
+    const project = new Project(projectData.title, projectData.desc);
 
-        project.id  = projectData.id
+    project.id = projectData.id;
 
-        project.todos = projectData.todos.map(todoData => {
-            const todo = new Todo(
-                todoData.title,
-                todoData.desc,
-                todoData.date,
-                todoData.priority
-            )
-            todo.id = todoData.id
-            todo.completed = todoData.completed
-            return todo
-        })
-        return project
-    })
+    project.todos = projectData.todos.map((todoData) => {
+      const todo = new Todo(
+        todoData.title,
+        todoData.desc,
+        todoData.date,
+        todoData.priority,
+      );
+      todo.id = todoData.id;
+      todo.completed = todoData.completed;
+      return todo;
+    });
+    return project;
+  });
 }
-

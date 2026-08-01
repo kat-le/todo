@@ -1,68 +1,68 @@
 .calendar {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .calendar-header {
-    text-align: center;
-    font-size: 1.5rem;
-    display: flex;
-    height: 40px;
-    align-items: center;
-    justify-content: space-around;
-    gap: 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
 }
 
 .calendar-header button {
-    border: none;
-    border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center;
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
 }
 
 .prev-btn {
-    background-image: url("assets/icons/left.png");
+  background-image: url("assets/icons/left.png");
 }
 
 .next-btn {
-    background-image: url("assets/icons/right.png");
+  background-image: url("assets/icons/right.png");
 }
 
 .weekday-row,
 .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .weekday {
-    text-align: center;
-    padding: 8px 0;
+  text-align: center;
+  padding: 8px 0;
 }
 
 .calendar-day {
-    min-height: 30px;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  min-height: 30px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .outside-month {
-    color: #b2b2b2;
+  color: #b2b2b2;
 }
 
 .today-circle {
-    width: 30px;
-    height: 30px;
-    background-color: rgb(136, 190, 244);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: white;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(136, 190, 244);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
 }

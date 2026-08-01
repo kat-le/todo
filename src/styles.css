@@ -1,150 +1,151 @@
 *,
-*::before{
-    box-sizing: border-box;
-    color: rgb(63, 63, 63);
+*::before {
+  box-sizing: border-box;
+  color: rgb(63, 63, 63);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Mukta", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    line-height: 1;
+  margin: 0;
+  padding: 0;
+  font-family: "Mukta", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: minmax(200px, 20%) 1fr;
-    grid-template-rows: 60px auto;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(200px, 20%) 1fr;
+  grid-template-rows: 60px auto;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
 }
 
 .header p {
-    font-size: 1.4rem;
-    font-weight: 200;
+  font-size: 1.4rem;
+  font-weight: 200;
 }
 
 .profile-img {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: #8fc9ff;
-    background-image: url("assets/icons/woman.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #8fc9ff;
+  background-image: url("assets/icons/woman.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .sidebar {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-    background-image: url("assets/imgs/sky.jpg");
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    padding: 14px;
-    justify-content: space-between;
-    border-right: 1px solid white;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  background-image: url("assets/imgs/sky.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  justify-content: space-between;
+  border-right: 1px solid white;
 }
 
 .sidebar-top {
-    width: 100%;  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
 }
 
 .sidebar-bottom {
-    margin-bottom: 50px;
-    width: 100%;  
-    display: flex;
-    justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .edit-project-btn,
 .delete-project-btn,
 .add-project-btn {
-    border: none;
-    padding: 16px;
-    width: 100%;
-    border-radius: 15px;
-    background: rgba(207, 218, 255, 0.352);
-    cursor: pointer;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.7px);
-    -webkit-backdrop-filter: blur(5.7px);
-    border: 1px solid rgba(199, 209, 255, 0.648);
+  border: none;
+  padding: 16px;
+  width: 100%;
+  border-radius: 15px;
+  background: rgba(207, 218, 255, 0.352);
+  cursor: pointer;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.7px);
+  -webkit-backdrop-filter: blur(5.7px);
+  border: 1px solid rgba(199, 209, 255, 0.648);
 }
 
-.project-names { 
-    display: flex;
-    flex-direction: column;
-    position: relative;
+.project-names {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .project-list-item {
-    margin-left: 8px;
-    margin-right: 8px;
-    font-size: 1.2rem;
-    display: flex;
-    align-content: center;
-    border-bottom: 1px solid;
-    height: 100%;
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 1.2rem;
+  display: flex;
+  align-content: center;
+  border-bottom: 1px solid;
+  height: 100%;
 }
 
 .project-list-btn {
-    width: 100%;
-    font-size: 1.1rem;
-    padding-bottom: 8px;
-    border-bottom: 1px solid; 
-    display: flex;
-    padding-top: 8px;
-    background-color: transparent;
-    border: none;
-    padding-left: 8px;
-    padding-right: 8px;
-    cursor: pointer;
-    height: 100%;
+  width: 100%;
+  font-size: 1.1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid;
+  display: flex;
+  padding-top: 8px;
+  background-color: transparent;
+  border: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  height: 100%;
 }
 
 .project-list-item:last-child {
-    border: none;
+  border: none;
 }
 
 .project-list-container {
-    width: 100%;
-    position: absolute;
-    top: 90%;
-    left: 0;
-    z-index: 10;
-    background-color: white;
-    border-radius: 0 0 15px 15px;
+  width: 100%;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  border-radius: 0 0 15px 15px;
 }
 
 .project-name-container {
-    margin-top: 48px;
-    height: min-content;
-    display: flex;
-    background-color: white;
-    width: 100%;
-    gap: 6px;
-    justify-content: flex-start;
-    border-radius: 15px;
-    align-items: center;
+  margin-top: 48px;
+  height: min-content;
+  display: flex;
+  background-color: white;
+  width: 100%;
+  gap: 6px;
+  justify-content: flex-start;
+  border-radius: 15px;
+  align-items: center;
 }
 
 .project-name-container button {
@@ -161,20 +162,20 @@ body {
 }
 
 .show-projects.open {
-    background-image: url("assets/icons/up.png");
+  background-image: url("assets/icons/up.png");
 }
 
 .project-description {
-    height: 100px;
-    overflow: scroll;
-    background-color: white;
-    padding: 12px;
-    border-radius: 15px;
+  height: 100px;
+  overflow: scroll;
+  background-color: white;
+  padding: 12px;
+  border-radius: 15px;
 }
 
 .project-description p {
-    margin-top: 0;
-    font-size: 1rem;
+  margin-top: 0;
+  font-size: 1rem;
 }
 
 .project-name-container p {
@@ -183,192 +184,194 @@ body {
 }
 
 .todo-content {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    display: grid;
-    background-image: url(assets/imgs/field.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-template-columns: 60% 1fr;
-;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  background-image: url(assets/imgs/field.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-template-columns: 60% 1fr;
+  min-height: 0;
 }
 
-.left-content{
-    grid-column: 1 / 2;
-    display: grid;
-    grid-template-rows: min-content auto;
-    gap: 24px;
-    margin: 24px 0 24px 24px;
+.left-content {
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  gap: 24px;
+  margin: 24px 0 24px 24px;
+  min-height: 0;
 }
 
 .greetings {
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
 }
 
 .flower-img {
-    width: 35px;
-    height: 35px;
-    background-image: url("assets/icons/morning-glory.png");
-    background-size: cover;
-    margin-bottom: 3px;
+  width: 35px;
+  height: 35px;
+  background-image: url("assets/icons/morning-glory.png");
+  background-size: cover;
+  margin-bottom: 3px;
 }
 
 .greetings p {
-    margin: 0 0 0 16px;
-    padding: 4px 0;
-    font-size: 2.5rem;
-    color: rgb(63, 63, 63);
+  margin: 0 0 0 16px;
+  padding: 4px 0;
+  font-size: 2.5rem;
+  color: rgb(63, 63, 63);
 }
 
 .todo-grid-card {
-    grid-row: 2 / 3;
-    display: grid;
-    grid-template-rows: min-content 1fr;
-    border-radius: 15px;
-    padding: 16px;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  border-radius: 15px;
+  padding: 16px;
+  min-height: 0;
 }
 
 .todo-card-title {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding-left: 8px;
-    font-size: 1.4rem;
-    justify-content: space-between;
-    margin-bottom: 8px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .todo-left {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .list-img {
-    height: 36px;
-    width: 40px;
-    background-image: url("assets/icons/checklist.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-right: 8px;
+  height: 36px;
+  width: 40px;
+  background-image: url("assets/icons/checklist.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 8px;
 }
 
 .add-todo-btn {
-    width: 150px;
-    height: 34px;
-    border-radius: 15px;
-    border: none;
-    background-color: rgb(136, 190, 244);
-    color: white;
-    font-size: 1rem;
+  width: 150px;
+  height: 34px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgb(136, 190, 244);
+  color: white;
+  font-size: 1rem;
 }
 
 .add-todo-btn {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .todos-container {
-    grid-row: 2 / 3;
-    border-radius: 15px;
-    padding: 0 16px 8px;
-    overflow: scroll;
-    background-color: rgba(255, 255, 255, 0.763);
-    display: flex;
-    flex-direction: column;
+  border-radius: 15px;
+  padding: 0 16px 8px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0.763);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .right-content {
-    display: grid;
-    grid-template-rows: 1fr min-content 1fr;
-    padding: 24px;
-    gap: 24px;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  padding: 24px;
+  gap: 24px;
 }
 
 .time {
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
 
 .time div:last-child {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 
 .clock {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .calender-card {
-    padding: 16px;
-    border-radius: 15px;
-    background-color: white;
+  padding: 16px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 .percent-completed {
-    border-radius: 15px;
-    background-color: white;
-    display: grid;
-    grid-template-rows: 1fr min-content 1fr;
+  border-radius: 15px;
+  background-color: white;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
 }
 
 .bar-container {
-    padding: 0px 16px;
+  padding: 0px 16px;
 }
 
 .bar {
-    width: 100%;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.763);
-    border-radius: 999px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.763);
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .bar-fill {
-    height: 60%;
-    width: 0%;
-    background: linear-gradient(90deg, #8fc9ff, #f8ffbc); 
-    border-radius: 10px 0 0 10px;
-    border-radius: inherit;
-    transition: width 0.3s ease;
-    margin-left: 6px;
-    margin-right: 6px;
+  height: 60%;
+  width: 0%;
+  background: linear-gradient(90deg, #8fc9ff, #f8ffbc);
+  border-radius: 10px 0 0 10px;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .percent {
-    display: flex;
-    align-items: center;
-    padding: 0px 16px;
-    border-radius: 0 0 15px 15px;
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  border-radius: 0 0 15px 15px;
 }
 
 .percent-header {
-    display: flex;
-    align-items: center;
-    font-size: 1.3rem;
-    padding: 8px 16px;
-    border-radius: 15px 15px 0px 0px;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  padding: 8px 16px;
+  border-radius: 15px 15px 0px 0px;
+  gap: 12px;
 }
 
 .calendar-img {
-    height: 20px;
-    width: 20px;
-    background-image: url("assets/icons/calendar.png");
-    background-size: 50px;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-bottom: 2px;
+  height: 20px;
+  width: 20px;
+  background-image: url("assets/icons/calendar.png");
+  background-size: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 2px;
 }
 
 .percent-completed,
@@ -377,18 +380,18 @@ body {
 .greetings,
 .todo-grid-card,
 .project-description {
-    background: rgba(255, 255, 255, 0.247);
-    border-radius: 16px;
-    backdrop-filter: blur(5.7px);
-    -webkit-backdrop-filter: blur(5.7px);
-    border-top: 1px solid rgba(255,255,255,.7);
-    border-left: 1px solid rgba(255,255,255,.5);
-    border-right: 1px solid rgba(255,255,255,.25);
-    border-bottom: 1px solid rgba(255,255,255,.2);
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.08),
-        0 0 18px rgba(255,255,255,.35),
-        0 0 40px rgba(255,210,235,.3);
+  background: rgba(255, 255, 255, 0.247);
+  border-radius: 16px;
+  backdrop-filter: blur(5.7px);
+  -webkit-backdrop-filter: blur(5.7px);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.08),
+    0 0 18px rgba(255, 255, 255, 0.35),
+    0 0 40px rgba(255, 210, 235, 0.3);
 }
 
 .dialog-open .percent-completed,
@@ -397,38 +400,38 @@ body {
 .dialog-open .greetings,
 .dialog-open .todo-grid-card,
 .dialog-open .project-description {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 #project-form,
 #todo-form,
 #edit-form,
 #edit-project-form {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  overflow: hidden;
 }
 
 dialog {
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 dialog::backdrop {
-    background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .form-btns {
-    display: flex;
-    justify-content: flex-end;
-    gap: 6px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
 }
 
-
-
-
-
+textarea {
+  height: 180px;
+  width: 300px;
+}
