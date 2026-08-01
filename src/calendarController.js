@@ -30,13 +30,15 @@ function renderCalendar() {
     header.classList.add("calendar-header");
 
     const prevBtn = document.createElement("button");
-    prevBtn.textContent = "<";
+    prevBtn.className = "prev-btn"
+    // prevBtn.textContent = "<";
 
     const title = document.createElement("p");
     title.textContent = format(currentMonth, "MMMM yyyy");
 
     const nextBtn = document.createElement("button");
-    nextBtn.textContent = ">";
+    nextBtn.className = "next-btn"
+    // nextBtn.textContent = ">";
 
     header.append(prevBtn, title, nextBtn);
 
@@ -83,6 +85,11 @@ function renderCalendar() {
 
             if (isToday(day)) {
                 cell.classList.add("today");
+                cell.textContent = "";
+                const circle = document.createElement("div")
+                circle.textContent = format(day, "d")
+                circle.className = "today-circle"
+                cell.appendChild(circle)
             }
 
             grid.appendChild(cell);

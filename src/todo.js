@@ -5,13 +5,13 @@ export default class Todo {
         this.id = crypto.randomUUID();
         this.title = title;
         this.desc = desc;
-        this.date = parseISO(date);
+        this.date = date ? parseISO(date) : null;
         this.priority = priority
         this.completed = false
     }
 
     formatDate() {
-        return format(this.date, "MMM dd, yyyy");
+        return format(this.date, "EEE MM/dd/yy");
     }
 
     toggleCompleted() {

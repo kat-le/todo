@@ -17,10 +17,20 @@
 .calendar-header button {
     border: none;
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: transparent;
     cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+
+.prev-btn {
+    background-image: url("assets/icons/left.png");
+}
+
+.next-btn {
+    background-image: url("assets/icons/right.png");
 }
 
 .weekday-row,
@@ -43,12 +53,16 @@
 }
 
 .outside-month {
-    color: #999;
+    color: #b2b2b2;
 }
 
-.today {
+.today-circle {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(136, 190, 244);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    background-color: rgb(135, 195, 255);
     color: white;
-
 }

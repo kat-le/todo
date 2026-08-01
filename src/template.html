@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <dialog id="edit-project-dialog"></dialog>
@@ -11,14 +14,16 @@
     <dialog id="add-todo-dialog"></dialog>
     <dialog id="edit-todo-dialog"></dialog>
 
-
-    <div class="big-container">
-        <div class="header"></div>
+    <div class="container">
+        <div class="header">
+            <p>My Todo List </p>
+            <div class="profile-img"></div>
+        </div>
         <div class="sidebar">
             <div class="sidebar-top">
                 <div class="project-names">
                     <div class="project-name-container">
-                        <button class="show-projects">^</button>
+                        <button class="show-projects"></button>
                         <p class="active-project-title"></p>
                     </div>
                     <div class="project-list-container hidden"></div>
@@ -27,24 +32,27 @@
                     <p class="active-description"></p>
                 </div>
                 <button class="edit-project-btn">Edit project</button>
-                <button class="delete-project-btn">Delete project</button>
-            </div>
-
-            <div class="sidebar-bottom">
                 <button class="add-project-btn">Add a new project</button>
             </div>
-           
+            <div class="sidebar-bottom">
+                <button class="delete-project-btn">Delete project</button>
+            </div>
         </div>
         <div class="todo-content">
             <div class="left-content">
                 <div class="greetings">
                     <p class="greeting"></p>
+                    <div class="flower-img"></div>
                 </div>
                 <div class="todo-grid-card">
-                    <div class="todo-card-title">Todo List</div>
-                    <div class="add-todo-container">
-                        <button class="add-todo-btn">Add a todo</button>
+                    <div class="todo-card-title">
+                        <div class="todo-left">
+                            <div class="list-img"></div>
+                            <p>Todo list</p>
+                        </div>
+                        <button class="add-todo-btn">+ Add a todo</button>
                     </div>
+                  
                     <div class="todos-container">
                     </div>
                 </div>
@@ -59,7 +67,11 @@
                     <div class="calendar"></div>
                 </div>
                 <div class="percent-completed">
-                    <div class="day"></div>
+                    <div class="percent-header">
+                         <div class="calendar-img"></div>
+                         <div class="day"> </div>
+                 </div>
+                   
                     <div class="bar-container">
                          <div class="bar">
                             <div class="bar-fill"></div>
@@ -70,5 +82,13 @@
             </div>
         </div>
     </div>
+    <!-- <div>
+        <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by DinosoftLabs - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/cloud-computing" title="cloud computing icons">Cloud computing icons created by Magnific - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/cloud" title="cloud icons">Cloud icons created by Magnific - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/flower" title="flower icons">Flower icons created by kornkun - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/flower" title="flower icons">Flower icons created by Vitaly Gorbachev - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/person" title="person icons">Person icons created by Vitaly Gorbachev - Flaticon</a>
+    </div> -->
 </body>
 </html>

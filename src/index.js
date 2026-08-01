@@ -7,9 +7,10 @@ import calendarController from "./calendarController.js";
 import clockController from "./clockController.js";
 import { saveActiveProject, loadActiveProject, loadProjects, saveProjects } from "./storage.js";
 
+// localStorage.clear()
 const manager = new ProjectManager();
 const savedProjects = loadProjects();
-// localStorage.clear()
+
 
 if (savedProjects.length === 0) {
     createSeedData();
@@ -25,7 +26,8 @@ if (savedProjects.length === 0) {
     refresh();
 }
 
-console.log(manager.activeProject)
+
+// console.log(manager.activeProject)
 clockController.renderClock();
 
 function createSeedData() {
@@ -90,7 +92,8 @@ document.addEventListener("submit", (event) => {
         });
         saveProjects(manager.projects)
 
-        refresh()
+        // refresh()
+        domController.renderExpandedTodo(todo, project)
         document.querySelector("#edit-todo-dialog").close();
        
     }
@@ -137,7 +140,18 @@ document.addEventListener("click", (event) => {
         project.removeTodo(id);
         saveProjects(manager.projects)
         refresh()
-    }    
+    }
+
+    if (event.target.classList.contains("todo-btn")) {
+       const todoId = event.target.dataset.id
+       const project = manager.activeProject
+       const todo = project.findTodo(todoId)
+       domController.renderExpandedTodo(todo, project)
+    }
+
+    if (event.target.classList.contains("back-btn")) {
+        refresh()
+    }
 
     if (event.target.classList.contains("show-projects")) {
         domController.toggleProjectNames(manager.projects, manager.activeProject);
@@ -148,8 +162,10 @@ document.addEventListener("click", (event) => {
         manager.setActiveProject(projectId)
         saveActiveProject(projectId)
         domController.closeProjectList();
+        domController.resetProjectButton();
         refresh()
     }
+    
     if (event.target.classList.contains("add-project-btn")) {
         domController.renderAddProjectForm()
     }

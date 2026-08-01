@@ -1,5 +1,8 @@
 import { format } from "date-fns";
 import createTodo from "./domTodo";
+import { createTodoExpanded } from "./domTodo";
+import check from "./assets/icons/check.png";
+import uncheck from "./assets/icons/uncheck.png";
 
 const domController = (() => {
 
@@ -18,11 +21,48 @@ const domController = (() => {
   function renderProjectTodos(project) {
     const todoContainer = document.querySelector(".todos-container")
     clear(todoContainer)
+    const header = document.createElement("div")
+    header.className = "todos-header"
+    const p1 = document.createElement("p")
+    p1.textContent = "Todos"
+    const p2 = document.createElement("p")
+    p2.textContent = "Priority"
+    const p3 = document.createElement("p")
+    p3.textContent = "Due date"
+    header.appendChild(p1)
+    header.appendChild(p2) 
+    header.appendChild(p3)
+    todoContainer.appendChild(header)
      
     project.todos.forEach(todo => {
       const card = createTodo(todo, project)
       todoContainer.appendChild(card)
+      const priority = card.querySelector(".priority-color")
+      const letter = card.querySelector(".priority-letter")
+      if (todo.priority === "High") {
+          letter.textContent = "h"
+          priority.style.backgroundColor = "#f56767";
+      } else if (todo.priority === "Medium") {
+          letter.textContent = "m"
+          priority.style.backgroundColor = "#ffde59";
+      } else {
+          letter.textContent = "l"
+          priority.style.backgroundColor = "#bce86f";
+      }
+    
+      const checkmark = card.querySelector(".complete")
+      if (todo.completed) {
+         checkmark.style.backgroundImage = `url(${check})`;
+      } else {
+        checkmark.style.backgroundImage = `url(${uncheck})`;
+      }
     })
+  }
+
+  function renderExpandedTodo(todo, project) {
+      const todosContainer = document.querySelector(".todos-container")
+      clear(todosContainer)
+      todosContainer.appendChild(createTodoExpanded(todo, project))
   }
 
  function renderAddProjectForm() {
@@ -32,64 +72,64 @@ const domController = (() => {
       <form id="project-form">
         <input name="title" placeholder="Project name" required>
         <input name="desc" placeholder="Project Description">
-        <button type="submit">Add Project</button>
-        <button type="button" id="cancel-btn">Cancel</button>
+        <div class="form-btns">
+          <button type="button" id="cancel-btn">Cancel</button>
+          <button type="submit">Add Project</button>
+        </div>
       </form>`
     ;
-
+    document.body.classList.add("dialog-open");
     dialog.showModal();
 
     dialog.querySelector("#cancel-btn").addEventListener("click", () => {
     dialog.close();
+    document.body.classList.remove("dialog-open");
+
   });
 }
 
 function renderTodoForm(projectId) {
+
   const dialog = document.querySelector("#add-todo-dialog");
 
   dialog.innerHTML = `
     <form id="todo-form" data-project-id="${projectId}">
       <input name="title" placeholder="Title" required>
 
-      <textarea
-        name="desc"
-        placeholder="Description">
-      </textarea>
+      <textarea name="desc" placeholder="Notes"></textarea>
 
-      <input name="date" type="date">
+      <input name="date" type="date" required>
 
       <select name="priority">
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-
-      <button type="submit">Add Todo</button>
-      <button type="button" id="cancel-btn">Cancel</button>
+      <div class="form-btns">
+        <button type="button" id="cancel-btn">Cancel</button>
+        <button type="submit">Add Todo</button>
+      </div>
     </form>
   `;
-
+  document.body.classList.add("dialog-open");
   dialog.showModal();
 
   dialog.querySelector("#cancel-btn").addEventListener("click", () => {
     dialog.close();
+    document.body.classList.remove("dialog-open");
   });
 }
 
 function renderEditTodoForm(project, todo) {
   const dialog = document.querySelector("#edit-todo-dialog");
 
- dialog.innerHTML = `
+  dialog.innerHTML = `
     <form id="edit-form" data-project-id="${project.id}" data-todo-id="${todo.id}">
+      <label for="title">Title</label>
       <input name="title" value="${todo.title}">
-
-      <textarea
-        name="desc">
-        ${todo.desc} 
-      </textarea>
-
+      <label for="date">Due date</label>
       <input name="date" type="date" value="${format(todo.date, "yyyy-MM-dd")}">
-
+      <label for="priority">Priority</label>
       <select name="priority">
          <option value="Low" ${todo.priority === "Low" ? "selected" : ""}>
         Low
@@ -101,17 +141,21 @@ function renderEditTodoForm(project, todo) {
             High
         </option>
       </select>
-
-
-      <button type="submit">Save</button>
-      <button type="button" id="cancel-btn">Cancel</button>
+      <label for="desc">Notes</label>
+      <textarea name="desc"></textarea>
+      <div class="form-btns">
+        <button type="button" id="cancel-btn">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
     </form>
   `; 
+    dialog.querySelector("textarea").value = todo.desc;
+    document.body.classList.add("dialog-open");
+    dialog.showModal();
 
-  dialog.showModal();
-
-  dialog.querySelector("#cancel-btn").addEventListener("click", () => {
-    dialog.close();
+    dialog.querySelector("#cancel-btn").addEventListener("click", () => {
+      document.body.classList.remove("dialog-open");
+      dialog.close();
   });
 }
 
@@ -119,6 +163,8 @@ function toggleProjectNames(projects, activeProject) {
     const projectListContainer = document.querySelector(".project-list-container");
     projectListContainer.innerHTML = "";
     projectListContainer.classList.toggle("hidden");
+    const showBtn = document.querySelector(".show-projects")
+    showBtn.classList.toggle("open")
 
     const projectList = document.createElement("div")
     projectList.className = "project-list"
@@ -143,25 +189,31 @@ function closeProjectList() {
     container.classList.add("hidden");
 }
 
+function resetProjectButton() {
+    const showBtn = document.querySelector(".show-projects");
+    showBtn.classList.remove("open");
+}
+
 function renderEditProjectForm(project) {
   const dialog = document.querySelector("#edit-project-dialog");
 
   dialog.innerHTML = `
     <form id="edit-project-form" data-id="${project.id}"">
       <input name="title" value="${project.title}">
-
       <textarea
-        name="desc">
-        ${project.desc} 
-      </textarea>
-      <button type="submit">Save</button>
-      <button type="button" id="cancel-btn">Cancel</button>
+        name="desc"></textarea>
+      <div class="form-btns">
+        <button type="button" id="cancel-btn">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
     </form>
   `;
-
+  dialog.querySelector("textarea").value = project.desc;
+  document.body.classList.add("dialog-open");
   dialog.showModal();
 
   dialog.querySelector("#cancel-btn").addEventListener("click", () => {
+    document.body.classList.remove("dialog-open");
     dialog.close();
   });
 }
@@ -175,8 +227,6 @@ function renderPercentCompleted(project) {
     const fill = document.querySelector(".bar-fill");
     fill.style.width = `${percent}%`;
 }
-
-
   return {
     renderTodoForm,
     renderEditTodoForm,
@@ -186,7 +236,9 @@ function renderPercentCompleted(project) {
     renderEditProjectForm,
     renderAddProjectForm,
     renderProjectTodos,
-    renderPercentCompleted
+    renderPercentCompleted,
+    resetProjectButton,
+    renderExpandedTodo
   };
 
 })();

@@ -1,41 +1,58 @@
-.project {
-    margin-bottom: 60px;
-    display: grid;
-    grid-template-columns: 30% 1fr;   
-    gap: 16px; 
-}
-
-#form-container {
-    display: flex;
-}
-
-#todo-dialog form {
-    display: flex;
-    flex-direction: column;
-    border: none;
+*,
+*::before{
+    box-sizing: border-box;
+    color: rgb(63, 63, 63);
 }
 
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: "Mukta", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1;
 }
 
-.big-container {
+.container {
     display: grid;
     grid-template-columns: minmax(200px, 20%) 1fr;
     grid-template-rows: 60px auto;
     height: 100vh;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.header p {
+    font-size: 1.4rem;
+    font-weight: 200;
+}
+
+.profile-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #8fc9ff;
+    background-image: url("assets/icons/woman.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .sidebar {
     grid-column: 1 / 2;
     grid-row: 1 / 3;
-    background-color: rgb(223, 231, 255);
+    background-image: url("assets/imgs/sky.jpg");
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     padding: 14px;
     justify-content: space-between;
+    border-right: 1px solid white;
 }
 
 .sidebar-top {
@@ -60,9 +77,13 @@ body {
     padding: 16px;
     width: 100%;
     border-radius: 15px;
-    background-color: rgb(207, 218, 255);
+    background: rgba(207, 218, 255, 0.352);
     cursor: pointer;
-
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.7px);
+    -webkit-backdrop-filter: blur(5.7px);
+    border: 1px solid rgba(199, 209, 255, 0.648);
 }
 
 .project-names { 
@@ -110,7 +131,7 @@ body {
     top: 90%;
     left: 0;
     z-index: 10;
-    background-color: rgb(233, 230, 255);
+    background-color: white;
     border-radius: 0 0 15px 15px;
 }
 
@@ -128,10 +149,19 @@ body {
 
 .project-name-container button {
   border: none;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
-  height: min-content;
+  width: 20px;
+  height: 20px;
   margin-left: 8px;
+  background-image: url("assets/icons/down.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.show-projects.open {
+    background-image: url("assets/icons/up.png");
 }
 
 .project-description {
@@ -148,15 +178,20 @@ body {
 }
 
 .project-name-container p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 .todo-content {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     display: grid;
-    background-color: rgb(233, 230, 255);
+    background-image: url(assets/imgs/field.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     grid-template-columns: 60% 1fr;
+;
 }
 
 .left-content{
@@ -168,21 +203,32 @@ body {
 }
 
 .greetings {
-    border: 1px solid;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+}
+
+.flower-img {
+    width: 35px;
+    height: 35px;
+    background-image: url("assets/icons/morning-glory.png");
+    background-size: cover;
+    margin-bottom: 3px;
 }
 
 .greetings p {
-    margin: 0 16px;
+    margin: 0 0 0 16px;
     padding: 4px 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    color: rgb(63, 63, 63);
 }
 
 .todo-grid-card {
     grid-row: 2 / 3;
     display: grid;
-    grid-template-rows: min-content 60px 1fr;
-    background-color: white;
+    grid-template-rows: min-content 1fr;
     border-radius: 15px;
     padding: 16px;
 }
@@ -193,23 +239,33 @@ body {
     align-items: center;
     padding-left: 8px;
     font-size: 1.4rem;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.todo-left {
+    display: flex;
+    align-items: center;
+}
+
+.list-img {
+    height: 36px;
+    width: 40px;
+    background-image: url("assets/icons/checklist.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 8px;
 }
 
 .add-todo-btn {
     width: 150px;
-    height: 40px;
+    height: 34px;
     border-radius: 15px;
     border: none;
-}
-
-.add-todo-container {
-    padding: 8px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-content: center;
-    grid-row: 2 / 3;
-
+    background-color: rgb(136, 190, 244);
+    color: white;
+    font-size: 1rem;
 }
 
 .add-todo-btn {
@@ -217,10 +273,13 @@ body {
 }
 
 .todos-container {
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
     border-radius: 15px;
-    padding: 8px;
+    padding: 0 16px 8px;
     overflow: scroll;
+    background-color: rgba(255, 255, 255, 0.763);
+    display: flex;
+    flex-direction: column;
 }
 
 .right-content {
@@ -231,7 +290,6 @@ body {
 }
 
 .time {
-    background-color: white;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -269,7 +327,7 @@ body {
 .bar {
     width: 100%;
     height: 30px;
-    background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.763);
     border-radius: 999px;
     overflow: hidden;
     display: flex;
@@ -279,7 +337,8 @@ body {
 .bar-fill {
     height: 60%;
     width: 0%;
-    background-color: #9b6cff;
+    background: linear-gradient(90deg, #8fc9ff, #f8ffbc); 
+    border-radius: 10px 0 0 10px;
     border-radius: inherit;
     transition: width 0.3s ease;
     margin-left: 6px;
@@ -293,11 +352,83 @@ body {
     border-radius: 0 0 15px 15px;
 }
 
-.day {
+.percent-header {
     display: flex;
     align-items: center;
     font-size: 1.3rem;
     padding: 8px 16px;
     border-radius: 15px 15px 0px 0px;
-
+    gap: 12px;
 }
+
+.calendar-img {
+    height: 20px;
+    width: 20px;
+    background-image: url("assets/icons/calendar.png");
+    background-size: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;
+}
+
+.percent-completed,
+.calender-card,
+.time,
+.greetings,
+.todo-grid-card,
+.project-description {
+    background: rgba(255, 255, 255, 0.247);
+    border-radius: 16px;
+    backdrop-filter: blur(5.7px);
+    -webkit-backdrop-filter: blur(5.7px);
+    border-top: 1px solid rgba(255,255,255,.7);
+    border-left: 1px solid rgba(255,255,255,.5);
+    border-right: 1px solid rgba(255,255,255,.25);
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.08),
+        0 0 18px rgba(255,255,255,.35),
+        0 0 40px rgba(255,210,235,.3);
+}
+
+.dialog-open .percent-completed,
+.dialog-open .calender-card,
+.dialog-open .time,
+.dialog-open .greetings,
+.dialog-open .todo-grid-card,
+.dialog-open .project-description {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+#project-form,
+#todo-form,
+#edit-form,
+#edit-project-form {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    overflow: hidden;
+}
+
+dialog {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.form-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+
+
+
+
